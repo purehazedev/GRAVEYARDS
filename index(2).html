@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Τα Κοιμητήρια του Δήμου Φυλής παρέχουν αξιοπρεπείς και ολοκληρωμένες ταφικές υπηρεσίες. Νεκροταφείο Άνω Λιοσίων, Παλαιό Νεκροταφείο Άνω Λιοσίων και Νεκροταφείο Χασιάς.">
+    <meta name="keywords" content="κοιμητήρια, δήμος φυλής, νεκροταφείο, άνω λιόσια, χασιά, ταφικές υπηρεσίες, Φυλή">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Κοιμητήρια Δήμου Φυλής">
+    <meta property="og:description" content="Αξιοπρεπείς και ολοκληρωμένες ταφικές υπηρεσίες από τον Δήμο Φυλής.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="LOGO_FYLI.png">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="icon" type="image/png" href="LOGO_FYLI.png">
+    <title>Κοιμητήρια Δήμου Φυλής</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* ── TOKENS ── */
+        :root {
+            --gold: #b8973a;
+            --gold-light: #d4b96a;
+            --gold-pale: #f5edd6;
+            --dark: #1a1a1a;
+            --dark-mid: #2c2c2c;
+            --stone: #6b6b6b;
+            --stone-light: #e8e4df;
+            --cream: #faf8f5;
+            --white: #ffffff;
+            --nav-h: 70px;
+        }
+
+        /* ── RESET ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        img { display: block; max-width: 100%; }
+        button { font-family: inherit; }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 50px; height: var(--nav-h);
+            background: rgba(26,26,26,0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(184,151,58,0.25);
+            transition: box-shadow 0.3s;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+        .nav-logo-img { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--gold); padding: 2px; object-fit: contain; flex-shrink: 0; }
+        .nav-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .nav-logo-text .t1 { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--white); white-space: nowrap; }
+        .nav-logo-text .t2 { font-family: 'Cormorant Garamond', serif; font-size: 10px; color: var(--gold-light); letter-spacing: 0.12em; text-transform: uppercase; }
+
+        /* Desktop links */
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+            font-family: 'Cormorant Garamond', serif; font-size: 14px; letter-spacing: 0.15em;
+            text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none;
+            position: relative; transition: color 0.3s; cursor: pointer;
+            padding: 4px 0; min-height: 44px; display: flex; align-items: center;
+        }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+        .nav-links a:hover { color: var(--gold-light); }
+        .nav-links a:hover::after { transform: scaleX(1); }
+
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; cursor: pointer; background: none; border: none; padding: 8px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; transform-origin: center; }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile drawer */
+        .mobile-menu {
+            display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+            background: rgba(20,20,20,0.98); z-index: 199;
+            flex-direction: column; align-items: center; justify-content: center; gap: 0;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .mobile-menu.open { opacity: 1; }
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400;
+            color: rgba(255,255,255,0.85); text-decoration: none; cursor: pointer;
+            padding: 18px 40px; width: 100%; text-align: center;
+            border-bottom: 1px solid rgba(184,151,58,0.15);
+            transition: color 0.2s, background 0.2s;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:active, .mobile-menu a:hover { color: var(--gold-light); background: rgba(184,151,58,0.07); }
+
+        /* ── PAGES ── */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative; height: 100vh; min-height: 580px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.25) 50%, rgba(10,10,10,0.75) 100%),
+                url('IMG_1320.jpeg') center/cover no-repeat;
+            animation: subtleZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes subtleZoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+        .hero-content { position: relative; text-align: center; color: var(--white); padding: 0 24px; animation: fadeUp 1.2s ease forwards; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-eyebrow {
+            font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.35em;
+            text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px;
+            display: flex; align-items: center; justify-content: center; gap: 14px;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 40px; height: 1px; background: var(--gold); }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 7vw, 5.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 12px; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+        .hero h1 em { font-style: italic; color: var(--gold-pale); }
+        .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 300; color: rgba(255,255,255,0.85); margin-bottom: 40px; }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 10px; padding: 15px 36px;
+            border: 1px solid var(--gold); color: var(--white);
+            font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.2em;
+            text-transform: uppercase; transition: all 0.4s; background: rgba(184,151,58,0.12);
+            cursor: pointer; min-height: 50px;
+        }
+        .hero-cta:hover, .hero-cta:active { background: var(--gold); color: var(--dark); }
+        .hero-scroll {
+            position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            color: rgba(255,255,255,0.45); font-family: 'Cormorant Garamond', serif;
+            font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+        .hero-scroll::after { content: ''; width: 1px; height: 34px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); }
+
+        /* ── SECTION HELPERS ── */
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-tag { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: block; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 400; color: var(--white); line-height: 1.2; }
+        .section-title.dark { color: var(--dark); }
+        .divider { width: 50px; height: 1px; background: var(--gold); margin: 18px auto 0; }
+
+        /* ── INFO CARDS ── */
+        .info-section { background: var(--dark); padding: 90px 50px; }
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--dark-mid); padding: 44px 36px; position: relative; transition: transform 0.3s; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+        .card:hover { transform: translateY(-4px); }
+        .card:hover::before { transform: scaleX(1); }
+        .card-icon { font-size: 1.8rem; margin-bottom: 20px; display: block; }
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--white); margin-bottom: 14px; }
+        .card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+        /* ── QUOTE STRIP ── */
+        .quote-strip { position: relative; overflow: hidden; height: 280px; display: flex; align-items: center; justify-content: center; }
+        .quote-strip-bg { position: absolute; inset: 0; background: linear-gradient(rgba(10,10,10,0.74), rgba(10,10,10,0.74)), url('IMG_8992.jpeg') center/cover no-repeat; }
+        .quote-strip-content { position: relative; text-align: center; padding: 0 30px; max-width: 800px; }
+        .quote-strip-content blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.5vw, 1.8rem); color: var(--white); line-height: 1.55; }
+        .quote-strip-content cite { display: block; margin-top: 18px; font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); }
+
+        /* ── ABOUT ── */
+        .about-wrap { padding-top: var(--nav-h); background: var(--cream); }
+        .about-section { padding: 100px 50px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-image { position: relative; }
+        .about-image img { width: 100%; height: 500px; object-fit: cover; }
+        .about-image::after { content: ''; position: absolute; bottom: -18px; right: -18px; width: 55%; height: 55%; border: 1px solid var(--gold); z-index: -1; }
+        .about-text p { margin-top: 22px; font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.85; color: var(--stone); }
+        .stat-row { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 36px; }
+        .stat { border-left: 2px solid var(--gold); padding-left: 14px; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); line-height: 1; }
+        .stat-label { font-size: 11px; color: var(--stone); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+        /* ── PLAQUE ── */
+        .plaque-section { padding: 60px 30px; background: var(--stone-light); display: flex; justify-content: center; }
+        .plaque-img { max-width: 560px; width: 100%; box-shadow: 0 16px 50px rgba(0,0,0,0.16); }
+
+        /* ── SERVICES ── */
+        .services-section { background: var(--stone-light); padding: 100px 50px; }
+        .services-inner { max-width: 1100px; margin: 0 auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 50px; }
+        .service-item { background: var(--white); padding: 36px; display: flex; gap: 20px; align-items: flex-start; border-bottom: 3px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; }
+        .service-item:hover { border-color: var(--gold); box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+        .service-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--stone-light); line-height: 1; flex-shrink: 0; width: 55px; }
+        .service-content h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 8px; }
+        .service-content p { font-size: 13.5px; color: var(--stone); line-height: 1.7; }
+        .download-cta { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gold); text-decoration: none; letter-spacing: 0.05em; transition: gap 0.2s; cursor: pointer; background: none; border: none; padding: 0; min-height: 44px; }
+        .download-cta:hover { gap: 12px; }
+
+        /* Facility photos */
+        .facility-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 40px; }
+        .facility-photo { position: relative; overflow: hidden; height: 280px; }
+        .facility-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .facility-photo:hover img { transform: scale(1.04); }
+        .facility-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 22px; background: linear-gradient(transparent, rgba(10,10,10,0.8)); color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.05em; }
+
+        /* ── CONTACT ── */
+        .contact-section { padding: 100px 50px; background: var(--cream); }
+        .contact-inner { max-width: 1100px; margin: 0 auto; }
+        .locations-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 50px; }
+        .location-card { background: var(--white); overflow: hidden; border: 1px solid rgba(0,0,0,0.07); transition: box-shadow 0.3s, transform 0.3s; }
+        .location-card:hover { box-shadow: 0 12px 50px rgba(0,0,0,0.1); transform: translateY(-4px); }
+        .location-thumb { width: 100%; height: 195px; object-fit: cover; }
+        .location-card-link { cursor: pointer; }
+        .location-card-link:hover .loc-hover-overlay { opacity: 1 !important; }
+        .location-card-link:hover .location-thumb { transform: scale(1.04); }
+        .location-card-header { background: var(--dark); padding: 20px 24px; display: flex; align-items: center; gap: 13px; }
+        .location-num { width: 32px; height: 32px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; color: var(--gold); flex-shrink: 0; }
+        .location-card-header h3 { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 400; color: var(--white); line-height: 1.3; }
+        .location-card-body { padding: 22px 24px; }
+        .location-detail { display: flex; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--stone); line-height: 1.5; }
+        .location-detail strong { color: var(--dark); flex-shrink: 0; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; padding-top: 2px; }
+        .location-map-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 11px 20px; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.3s; font-family: 'Cormorant Garamond', serif; cursor: pointer; background: none; min-height: 44px; }
+        .location-map-btn:hover, .location-map-btn:active { background: var(--gold); color: var(--dark); }
+
+        /* ── MAP MODAL ── */
+        .map-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+        .map-modal.open { display: flex; }
+        .map-modal-inner { background: var(--dark); width: 100%; max-width: 900px; overflow: hidden; }
+        .map-modal-header { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .map-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--white); }
+        .map-close { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 26px; cursor: pointer; line-height: 1; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
+        .map-close:hover { color: var(--white); }
+        .map-modal iframe { width: 100%; height: 380px; display: block; border: 0; }
+
+        /* ── LOCATION DETAIL PAGES ── */
+        .loc-hero { position: relative; height: 60vh; min-height: 380px; overflow: hidden; }
+        .loc-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .loc-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.18), rgba(10,10,10,0.68)); display: flex; align-items: flex-end; padding: 44px 50px; }
+        .loc-hero-title p { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+        .loc-hero-title h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 400; color: var(--white); line-height: 1.1; }
+
+        .loc-body { max-width: 1100px; margin: 0 auto; padding: 70px 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .loc-img-wrap { position: relative; }
+        .loc-img-wrap img { width: 100%; height: 420px; object-fit: cover; box-shadow: 0 18px 55px rgba(0,0,0,0.12); }
+        .loc-img-wrap::after { content: ''; position: absolute; bottom: -16px; left: -16px; width: 50%; height: 50%; border: 1px solid var(--gold); z-index: -1; }
+        .loc-info .section-tag { text-align: left; }
+        .loc-info h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 2.5vw, 2.2rem); font-weight: 400; color: var(--dark); line-height: 1.2; margin-bottom: 6px; }
+        .loc-divider { width: 46px; height: 1px; background: var(--gold); margin: 16px 0 24px; }
+        .loc-info p { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--stone); line-height: 1.85; margin-bottom: 16px; }
+        .loc-details { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+        .loc-detail-row { display: flex; gap: 14px; font-size: 14px; color: var(--stone); padding-bottom: 12px; border-bottom: 1px solid var(--stone-light); }
+        .loc-detail-row strong { color: var(--dark); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; min-width: 65px; padding-top: 2px; flex-shrink: 0; }
+        .loc-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 28px; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); cursor: pointer; background: none; border: none; padding: 0; transition: gap 0.2s; min-height: 44px; }
+        .loc-back:hover { gap: 12px; }
+
+        /* Location 1 photo grid */
+        .loc1-photo-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 3px; max-width: 1100px; margin: 0 auto; padding: 0 50px; }
+        .loc1-photo-grid .g-main { grid-column: 1; grid-row: 1 / 3; }
+        .loc1-photo-grid .g-main img { width: 100%; height: 520px; object-fit: cover; }
+        .loc1-photo-grid .g-top img, .loc1-photo-grid .g-bottom img { width: 100%; height: 258px; object-fit: cover; }
+        .loc1-wide-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; max-width: 1100px; margin: 3px auto 0; padding: 0 50px; }
+        .loc1-wide-row img { width: 100%; height: 240px; object-fit: cover; }
+        .loc1-info-section { max-width: 1100px; margin: 0 auto; padding: 60px 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+        /* ── SUBMIT FORM ── */
+        .form-section { padding: 100px 50px; background: var(--stone-light); }
+        .form-inner { max-width: 620px; margin: 0 auto; }
+        .form-card { background: var(--white); padding: 50px; border-top: 3px solid var(--gold); margin-top: 44px; }
+        .form-field { margin-bottom: 24px; }
+        .form-field label { display: block; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); margin-bottom: 9px; font-family: 'Cormorant Garamond', serif; }
+        .form-field input { width: 100%; padding: 13px 15px; border: 1px solid rgba(0,0,0,0.15); background: var(--cream); font-size: 15px; font-family: 'Cormorant Garamond', serif; color: var(--dark); outline: none; transition: border-color 0.3s; border-radius: 0; -webkit-appearance: none; }
+        .form-field input:focus { border-color: var(--gold); background: var(--white); }
+        .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 40px; background: var(--gold); color: var(--dark); font-family: 'Cormorant Garamond', serif; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.3s, transform 0.2s; cursor: pointer; border: none; min-height: 50px; width: 100%; }
+        .btn-gold:hover, .btn-gold:active { background: var(--gold-light); }
+
+        /* ── FOOTER ── */
+        footer { background: #111; color: rgba(255,255,255,0.5); padding: 44px 50px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; }
+        .footer-left { display: flex; align-items: center; gap: 12px; }
+        .footer-logo { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(184,151,58,0.4); padding: 2px; object-fit: contain; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 13px; color: rgba(255,255,255,0.7); }
+        .footer-center { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.08em; text-align: center; line-height: 1.7; }
+        .footer-right { text-align: right; font-size: 12px; line-height: 1.7; }
+
+        /* ── GDPR COOKIE BANNER ── */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+            background: rgba(20,20,20,0.97); border-top: 1px solid rgba(184,151,58,0.3);
+            padding: 18px 30px; display: flex; align-items: center; gap: 20px;
+            flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s ease;
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; flex: 1; min-width: 240px; font-family: 'Cormorant Garamond', serif; }
+        .cookie-text a { color: var(--gold-light); text-decoration: underline; cursor: pointer; }
+        .cookie-btn { padding: 10px 24px; background: var(--gold); color: var(--dark); border: none; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; min-height: 44px; transition: background 0.2s; flex-shrink: 0; }
+        .cookie-btn:hover { background: var(--gold-light); }
+
+        /* ── MOBILE RESPONSIVE ── */
+        @media (max-width: 768px) {
+            :root { --nav-h: 64px; }
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: flex; }
+
+            /* Hero */
+            .hero { min-height: 100svh; }
+            .hero-scroll { display: none; }
+
+            /* Info cards */
+            .info-section { padding: 70px 20px; }
+            .cards-grid { grid-template-columns: 1fr; gap: 2px; }
+
+            /* Quote */
+            .quote-strip { height: auto; min-height: 220px; padding: 50px 20px; }
+
+            /* About */
+            .about-section { grid-template-columns: 1fr; gap: 40px; padding: 70px 20px; }
+            .about-image img { height: 300px; }
+            .about-image::after { display: none; }
+            .stat-row { gap: 20px; }
+
+            /* Plaque */
+            .plaque-section { padding: 50px 20px; }
+
+            /* Services */
+            .services-section { padding: 70px 20px; }
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .facility-row { grid-template-columns: 1fr; }
+            .facility-photo { height: 240px; }
+
+            /* Contact */
+            .contact-section { padding: 70px 20px; }
+            .locations-grid { grid-template-columns: 1fr; gap: 18px; }
+            .location-card { max-width: 480px; margin: 0 auto; width: 100%; }
+
+            /* Location detail */
+            .loc-hero { height: 50vw; min-height: 240px; }
+            .loc-hero-overlay { padding: 24px 20px; }
+            .loc-body { grid-template-columns: 1fr; gap: 36px; padding: 50px 20px; }
+            .loc-img-wrap img { height: 260px; }
+            .loc-img-wrap::after { display: none; }
+            .loc1-photo-grid { grid-template-columns: 1fr; padding: 0 20px; }
+            .loc1-photo-grid .g-main { grid-column: 1; grid-row: auto; }
+            .loc1-photo-grid .g-main img { height: 240px; }
+            .loc1-photo-grid .g-top img, .loc1-photo-grid .g-bottom img { height: 200px; }
+            .loc1-wide-row { grid-template-columns: 1fr; padding: 0 20px; }
+            .loc1-wide-row img { height: 200px; }
+            .loc1-info-section { grid-template-columns: 1fr; padding: 50px 20px; }
+
+            /* Submit form */
+            .form-section { padding: 70px 20px; }
+            .form-card { padding: 30px 20px; }
+
+            /* Footer */
+            footer { grid-template-columns: 1fr; text-align: center; padding: 36px 20px; gap: 16px; }
+            .footer-left { justify-content: center; }
+            .footer-right { text-align: center; }
+
+            /* Map modal */
+            .map-modal { padding: 12px; }
+            .map-modal iframe { height: 300px; }
+
+            /* Cookie banner */
+            .cookie-banner { padding: 16px 20px; gap: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-eyebrow::before, .hero-eyebrow::after { width: 24px; }
+            .hero-cta { padding: 14px 28px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="mainNav" role="navigation" aria-label="Κύρια πλοήγηση">
+    <div class="nav-logo" onclick="showPage('home')" role="link" aria-label="Αρχική σελίδα" tabindex="0">
+        <img src="LOGO_FYLI.png" alt="Λογότυπο Δήμου Φυλής" class="nav-logo-img">
+        <div class="nav-logo-text">
+            <span class="t1">Κοιμητήρια Δήμου Φυλής</span>
+            <span class="t2">Δήμος Φυλής</span>
+        </div>
+    </div>
+    <ul class="nav-links" role="list">
+        <li><a onclick="showPage('home')" role="button" tabindex="0">Αρχική</a></li>
+        <li><a onclick="showPage('about')" role="button" tabindex="0">Πληροφορίες</a></li>
+        <li><a onclick="showPage('services')" role="button" tabindex="0">Υπηρεσίες</a></li>
+        <li><a onclick="showPage('contact')" role="button" tabindex="0">Επικοινωνία</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Μενού" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Mobile Menu Drawer -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Μενού πλοήγησης">
+    <a onclick="mobileNav('home')">Αρχική</a>
+    <a onclick="mobileNav('about')">Πληροφορίες</a>
+    <a onclick="mobileNav('services')">Υπηρεσίες</a>
+    <a onclick="mobileNav('contact')">Επικοινωνία</a>
+</div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="page-home" class="page active" role="main">
+
+    <section class="hero" aria-label="Αρχική εικόνα">
+        <div class="hero-bg" role="img" aria-label="Νυχτερινή άποψη νεκροταφείου"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Δήμος Φυλής</p>
+            <h1>Κοιμητήρια<br><em>Δήμου Φυλής</em></h1>
+            <p class="hero-sub">Τιμώντας τις ζωές, διαφυλάσσοντας τις μνήμες</p>
+            <button class="hero-cta" onclick="showPage('contact')" aria-label="Μετάβαση στην επικοινωνία">
+                Επικοινωνήστε μαζί μας &#8594;
+            </button>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">Scroll</div>
+    </section>
+
+    <section class="info-section" aria-labelledby="info-title">
+        <div class="section-header">
+            <span class="section-tag">Οι υπηρεσίες μας</span>
+            <h2 class="section-title" id="info-title">Αφοσιωμένοι στη φροντίδα<br>και τον σεβασμό</h2>
+            <div class="divider" aria-hidden="true"></div>
+        </div>
+        <div class="cards-grid">
+            <div class="card"><span class="card-icon" aria-hidden="true">🌿</span><h3>Φυσικό Περιβάλλον</h3><p>Περιτριγυρισμένα από πράσινο, τα κοιμητήριά μας προσφέρουν ένα ήρεμο καταφύγιο για τους αγαπημένους σας.</p></div>
+            <div class="card"><span class="card-icon" aria-hidden="true">✦</span><h3>Εξατομικευμένες Υπηρεσίες</h3><p>Παρέχουμε πλήρη γκάμα ταφικών υπηρεσιών, προσαρμοσμένων στις ανάγκες κάθε οικογένειας.</p></div>
+            <div class="card"><span class="card-icon" aria-hidden="true">🏛</span><h3>Ιστορικός Χώρος</h3><p>Με μακρά ιστορία, τα κοιμητήριά μας αποτελούν αναπόσπαστο μέρος της τοπικής κοινότητας.</p></div>
+        </div>
+    </section>
+
+    <div class="quote-strip" role="figure" aria-label="Απόφθεγμα">
+        <div class="quote-strip-bg"></div>
+        <div class="quote-strip-content">
+            <blockquote>«Ο πολιτισμός ενός τόπου φαίνεται από τον τρόπο που τιμά τους νεκρούς του»</blockquote>
+            <cite>Δημοτικά Κοιμητήρια — Δήμος Φυλής</cite>
+        </div>
+    </div>
+
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<div id="page-about" class="page" role="main">
+    <div class="about-wrap">
+        <div class="about-section">
+            <div class="about-image">
+                <img src="IMG_0381.jpeg" alt="Εσωτερικό εκκλησίας κοιμητηρίου Άνω Λιοσίων">
+            </div>
+            <div class="about-text">
+                <span class="section-tag">Σχετικά με εμάς</span>
+                <h2 class="section-title dark" style="text-align:left;">Κοιμητήρια<br><em style="font-style:italic;color:var(--stone);">Δήμου Φυλής</em></h2>
+                <div class="divider" style="margin-left:0;" aria-hidden="true"></div>
+                <p>Τα Κοιμητήρια του Δήμου Φυλής εξυπηρετούν γενιές οικογενειών της περιοχής. Η αποστολή μας είναι να παρέχουμε ένα γαλήνιο και αξιοπρεπές περιβάλλον για τους αγαπημένους σας.</p>
+                <p>Με βαθιά δέσμευση στον σεβασμό και τη φροντίδα, τα κοιμητήριά μας παραμένουν ζωτικό κομμάτι της κοινότητας της Φυλής.</p>
+                <div class="stat-row" role="list" aria-label="Στατιστικά">
+                    <div class="stat" role="listitem"><div class="stat-num">3</div><div class="stat-label">Νεκροταφεία</div></div>
+                    <div class="stat" role="listitem"><div class="stat-num">100+</div><div class="stat-label">Χρόνια ιστορίας</div></div>
+                    <div class="stat" role="listitem"><div class="stat-num">24/7</div><div class="stat-label">Εξυπηρέτηση</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="plaque-section">
+            <img src="IMG_4162.jpeg" alt="Πινακίδα με απόφθεγμα: Ο πολιτισμός ενός τόπου φαίνεται από τον τρόπο που τιμά τους νεκρούς του" class="plaque-img">
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<div id="page-services" class="page" role="main">
+    <div style="padding-top:var(--nav-h);">
+        <section class="services-section" aria-labelledby="services-title">
+            <div class="services-inner">
+                <div class="section-header">
+                    <span class="section-tag">Υπηρεσίες</span>
+                    <h2 class="section-title dark" id="services-title">Διαθέσιμες φόρμες<br>& Εγκαταστάσεις</h2>
+                    <div class="divider" aria-hidden="true"></div>
+                </div>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-num" aria-hidden="true">01</div>
+                        <div class="service-content">
+                            <h4>Αίτηση Αγοράς Μαρμάρινης Ατομικής Οστεοθήκης</h4>
+                            <p>Έντυπο αίτησης για την αγορά μαρμάρινης ατομικής οστεοθήκης.</p>
+                            <a href="ΑΙΤΗΣΗ_ΑΓΟΡΑΣ_ΜΑΡΜΑΡΙΝΗΣ_ΑΤΟΜΙΚΗΣ_ΟΣΤΕΟΘΗΚΗΣ.dotx" download class="download-cta" aria-label="Λήψη εντύπου αίτησης οστεοθήκης">↓ Λήψη εντύπου</a>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-num" aria-hidden="true">02</div>
+                        <div class="service-content">
+                            <h4>Αίτηση για Οστεοφυλάκιο</h4>
+                            <p>Έντυπο αίτησης για χρήση οστεοφυλακίου στα κοιμητήρια.</p>
+                            <a href="ΑΙΤΗΣΗ_ΓΙΑ_ΟΣΤΕΟΦΥΛΑΚΙΟ.dotx" download class="download-cta" aria-label="Λήψη εντύπου αίτησης οστεοφυλακίου">↓ Λήψη εντύπου</a>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-num" aria-hidden="true">03</div>
+                        <div class="service-content">
+                            <h4>Αίτηση Αγοράς Οικογενειακού Τάφου</h4>
+                            <p>Έντυπο αίτησης για την αγορά οικογενειακού τάφου.</p>
+                            <a href="ΑΙΤΗΣΗ_ΑΓΟΡΑΣ_ΟΙΚΟΓΕΝΕΙΑΚΟΥ_ΤΑΦΟΥ.dotx" download class="download-cta" aria-label="Λήψη εντύπου αίτησης οικογενειακού τάφου">↓ Λήψη εντύπου</a>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-num" aria-hidden="true">04</div>
+                        <div class="service-content">
+                            <h4>Υποβολή Συμπληρωμένης Φόρμας</h4>
+                            <p>Υποβάλετε τη συμπληρωμένη φόρμα σας ηλεκτρονικά.</p>
+                            <button class="download-cta" onclick="showPage('submit')" aria-label="Μετάβαση στην υποβολή φόρμας">→ Υποβολή φόρμας</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="facility-row">
+                    <div class="facility-photo">
+                        <img src="IMG_4165.jpeg" alt="Γραφείο εξυπηρέτησης κοιμητηρίου">
+                        <div class="facility-label">Γραφείο Εξυπηρέτησης</div>
+                    </div>
+                    <div class="facility-photo">
+                        <img src="IMG_4154.jpeg" alt="Εγκαταστάσεις κοιμητηρίου">
+                        <div class="facility-label">Εγκαταστάσεις</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<div id="page-contact" class="page" role="main">
+    <div style="padding-top:var(--nav-h);">
+        <section class="contact-section" aria-labelledby="contact-title">
+            <div class="contact-inner">
+                <div class="section-header">
+                    <span class="section-tag">Επικοινωνία</span>
+                    <h2 class="section-title dark" id="contact-title">Επικοινωνήστε<br>μαζί μας</h2>
+                    <div class="divider" aria-hidden="true"></div>
+                </div>
+                <div class="locations-grid">
+
+                    <!-- Location 1 -->
+                    <div class="location-card location-card-link" onclick="showPage('location1')" role="button" tabindex="0" aria-label="Νεκροταφείο Άνω Λιοσίων - Δείτε περισσότερα">
+                        <div style="position:relative;overflow:hidden;height:195px;">
+                            <img src="IMG_1806.jpeg" alt="Νεκροταφείο Άνω Λιοσίων" class="location-thumb" style="transition:transform 0.5s;">
+                            <div class="loc-hover-overlay" style="position:absolute;inset:0;background:rgba(10,10,10,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;">
+                                <span style="color:white;font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.7);padding:9px 18px;">Περισσότερα &#8594;</span>
+                            </div>
+                        </div>
+                        <div class="location-card-header"><div class="location-num">Α</div><h3>Νεκροταφείο Άνω Λιοσίων</h3></div>
+                        <div class="location-card-body">
+                            <div class="location-detail"><strong>Τηλ.</strong><span>21032042713 · 2132042821</span></div>
+                            <div class="location-detail"><strong>Δ/νση</strong><span>Λεωφ. Μεγ. Αλεξάνδρου, Άνω Λιόσια 133 44</span></div>
+                            <span style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--gold);">Δείτε περισσότερα &#8594;</span>
+                        </div>
+                    </div>
+
+                    <!-- Location 2 -->
+                    <div class="location-card location-card-link" onclick="showPage('location2')" role="button" tabindex="0" aria-label="Παλαιό Νεκροταφείο Άνω Λιοσίων - Δείτε περισσότερα">
+                        <div style="position:relative;overflow:hidden;height:195px;">
+                            <img src="IMG_4743.jpeg" alt="Παλαιό Νεκροταφείο Άνω Λιοσίων" class="location-thumb" style="transition:transform 0.5s;">
+                            <div class="loc-hover-overlay" style="position:absolute;inset:0;background:rgba(10,10,10,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;">
+                                <span style="color:white;font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.7);padding:9px 18px;">Περισσότερα &#8594;</span>
+                            </div>
+                        </div>
+                        <div class="location-card-header"><div class="location-num">Β</div><h3>Παλαιό Νεκροταφείο Άνω Λιοσίων</h3></div>
+                        <div class="location-card-body">
+                            <div class="location-detail"><strong>Τηλ.</strong><span>21032042713 · 2132042821</span></div>
+                            <div class="location-detail"><strong>Δ/νση</strong><span>Fyli 133 42</span></div>
+                            <span style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--gold);">Δείτε περισσότερα &#8594;</span>
+                        </div>
+                    </div>
+
+                    <!-- Location 3 -->
+                    <div class="location-card location-card-link" onclick="showPage('location3')" role="button" tabindex="0" aria-label="Νεκροταφείο Χασιάς - Δείτε περισσότερα">
+                        <div style="position:relative;overflow:hidden;height:195px;">
+                            <img src="IMG_1320.jpeg" alt="Νεκροταφείο Χασιάς" class="location-thumb" style="transition:transform 0.5s;">
+                            <div class="loc-hover-overlay" style="position:absolute;inset:0;background:rgba(10,10,10,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;">
+                                <span style="color:white;font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.7);padding:9px 18px;">Περισσότερα &#8594;</span>
+                            </div>
+                        </div>
+                        <div class="location-card-header"><div class="location-num">Γ</div><h3>Νεκροταφείο Χασιάς</h3></div>
+                        <div class="location-card-body">
+                            <div class="location-detail"><strong>Τηλ.</strong><span>21032042713 · 2132042821</span></div>
+                            <div class="location-detail"><strong>Δ/νση</strong><span>Fyli 133 45</span></div>
+                            <span style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--gold);">Δείτε περισσότερα &#8594;</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- ══════════════ LOCATION 1 ══════════════ -->
+<div id="page-location1" class="page" role="main">
+    <div style="padding-top:var(--nav-h);">
+        <div class="loc-hero">
+            <img src="IMG_1806.jpeg" alt="Νεκροταφείο Άνω Λιοσίων εξωτερικό">
+            <div class="loc-hero-overlay">
+                <div class="loc-hero-title">
+                    <p>Κοιμητήρια Δήμου Φυλής</p>
+                    <h2>Νεκροταφείο<br>Άνω Λιοσίων</h2>
+                </div>
+            </div>
+        </div>
+        <div style="background:var(--dark);padding:3px 0;">
+            <div class="loc1-photo-grid">
+                <div class="g-main"><img src="IMG_0381.jpeg" alt="Εσωτερικό εκκλησίας"></div>
+                <div class="g-top"><img src="IMG_4165.jpeg" alt="Γραφείο εξυπηρέτησης"></div>
+                <div class="g-bottom"><img src="IMG_4154.jpeg" alt="Εγκαταστάσεις"></div>
+            </div>
+            <div class="loc1-wide-row">
+                <img src="IMG_4162.jpeg" alt="Πινακίδα κοιμητηρίου">
+                <img src="IMG_1806.jpeg" alt="Εξωτερικός χώρος">
+            </div>
+        </div>
+        <div class="loc1-info-section">
+            <div class="loc-info">
+                <button class="loc-back" onclick="showPage('contact')" aria-label="Επιστροφή">&#8592; Πίσω στην επικοινωνία</button>
+                <span class="section-tag">Νεκροταφείο Άνω Λιοσίων</span>
+                <h3>Ένας ιστορικός τόπος<br>μνήμης και σεβασμού</h3>
+                <div class="loc-divider" aria-hidden="true"></div>
+                <p>Το Νεκροταφείο Άνω Λιοσίων αποτελεί τον κύριο χώρο ταφής του Δήμου Φυλής. Διαθέτει σύγχρονες εγκαταστάσεις, ανακαινισμένο εκκλησάκι με εντυπωσιακή βυζαντινή διακόσμηση και άρτια οργανωμένες υπηρεσίες εξυπηρέτησης του κοινού.</p>
+                <p>Στόχος μας είναι να προσφέρουμε ένα αξιοπρεπές, ήρεμο περιβάλλον για τους επισκέπτες και τους αγαπημένους τους.</p>
+            </div>
+            <div>
+                <div class="loc-details">
+                    <div class="loc-detail-row"><strong>Τηλ.</strong><span>21032042713 · 2132042821</span></div>
+                    <div class="loc-detail-row"><strong>Διεύθυνση</strong><span>Λεωφ. Μεγ. Αλεξάνδρου, Άνω Λιόσια 133 44</span></div>
+                    <div class="loc-detail-row"><strong>Ώρες</strong><span>Καθημερινά 07:00 – 18:00</span></div>
+                </div>
+                <button class="location-map-btn" style="margin-top:24px;" onclick="openMap('map1','Νεκροταφείο Άνω Λιοσίων')" aria-label="Εμφάνιση χάρτη">⊕ Εμφάνιση χάρτη</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════ LOCATION 2 ══════════════ -->
+<div id="page-location2" class="page" role="main">
+    <div style="padding-top:var(--nav-h);">
+        <div class="loc-hero">
+            <img src="IMG_4743.jpeg" alt="Παλαιό Νεκροταφείο Άνω Λιοσίων είσοδος">
+            <div class="loc-hero-overlay">
+                <div class="loc-hero-title">
+                    <p>Κοιμητήρια Δήμου Φυλής</p>
+                    <h2>Παλαιό Νεκροταφείο<br>Άνω Λιοσίων</h2>
+                </div>
+            </div>
+        </div>
+        <div class="loc-body">
+            <div class="loc-img-wrap">
+                <img src="IMG_8992.jpeg" alt="Πέτρινο μονοπάτι κοιμητηρίου">
+            </div>
+            <div class="loc-info">
+                <button class="loc-back" onclick="showPage('contact')" aria-label="Επιστροφή">&#8592; Πίσω στην επικοινωνία</button>
+                <span class="section-tag">Παλαιό Νεκροταφείο Άνω Λιοσίων</span>
+                <h3>Ιστορία και παράδοση<br>στο πέρασμα του χρόνου</h3>
+                <div class="loc-divider" aria-hidden="true"></div>
+                <p>Το Παλαιό Νεκροταφείο Άνω Λιοσίων φιλοξενεί γενιές κατοίκων της περιοχής. Με τα παραδοσιακά πέτρινα μονοπάτια και τον περιτοιχισμένο χώρο του, αποπνέει μια αίσθηση ιστορίας και συνέχειας.</p>
+                <p>Πρόσφατες εργασίες συντήρησης και αναβάθμισης έχουν αναδείξει τη χαρακτηριστική αρχιτεκτονική του χώρου, διατηρώντας τον αυθεντικό παραδοσιακό χαρακτήρα του.</p>
+                <div class="loc-details">
+                    <div class="loc-detail-row"><strong>Τηλ.</strong><span>21032042713 · 2132042821</span></div>
+                    <div class="loc-detail-row"><strong>Διεύθυνση</strong><span>Fyli 133 42</span></div>
+                    <div class="loc-detail-row"><strong>Ώρες</strong><span>Καθημερινά 07:00 – 18:00</span></div>
+                </div>
+                <button class="location-map-btn" style="margin-top:24px;" onclick="openMap('map2','Παλαιό Νεκροταφείο Άνω Λιοσίων')" aria-label="Εμφάνιση χάρτη">⊕ Εμφάνιση χάρτη</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════ LOCATION 3 ══════════════ -->
+<div id="page-location3" class="page" role="main">
+    <div style="padding-top:var(--nav-h);">
+        <div class="loc-hero">
+            <img src="IMG_1320.jpeg" alt="Νεκροταφείο Χασιάς νυχτερινή άποψη">
+            <div class="loc-hero-overlay">
+                <div class="loc-hero-title">
+                    <p>Κοιμητήρια Δήμου Φυλής</p>
+                    <h2>Νεκροταφείο<br>Χασιάς</h2>
+                </div>
+            </div>
+        </div>
+        <div class="loc-body">
+            <div class="loc-img-wrap">
+                <img src="IMG_1323.jpeg" alt="Νεκροταφείο Χασιάς ημερήσια άποψη">
+            </div>
+            <div class="loc-info">
+                <button class="loc-back" onclick="showPage('contact')" aria-label="Επιστροφή">&#8592; Πίσω στην επικοινωνία</button>
+                <span class="section-tag">Νεκροταφείο Χασιάς</span>
+                <h3>Ένας γαλήνιος χώρος<br>ανάπαυσης</h3>
+                <div class="loc-divider" aria-hidden="true"></div>
+                <p>Το Νεκροταφείο Χασιάς αποτελεί έναν από τους τρεις χώρους ταφής του Δήμου Φυλής. Βρίσκεται σε ήσυχη τοποθεσία, περιτριγυρισμένο από φυσικό τοπίο, προσφέροντας ένα αξιοπρεπές και γαλήνιο περιβάλλον.</p>
+                <p>Οι εγκαταστάσεις έχουν ανακαινιστεί πρόσφατα και παρέχουν σύγχρονες υπηρεσίες, ενώ παράλληλα διατηρούν τον παραδοσιακό χαρακτήρα της περιοχής.</p>
+                <div class="loc-details">
+                    <div class="loc-detail-row"><strong>Τηλ.</strong><span>21032042713 · 2132042821</span></div>
+                    <div class="loc-detail-row"><strong>Διεύθυνση</strong><span>Fyli 133 45</span></div>
+                    <div class="loc-detail-row"><strong>Ώρες</strong><span>Καθημερινά 07:00 – 18:00</span></div>
+                </div>
+                <button class="location-map-btn" style="margin-top:24px;" onclick="openMap('map3','Νεκροταφείο Χασιάς')" aria-label="Εμφάνιση χάρτη">⊕ Εμφάνιση χάρτη</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════ SUBMIT FORM ══════════════ -->
+<div id="page-submit" class="page" role="main">
+    <div style="padding-top:var(--nav-h);">
+        <section class="form-section" aria-labelledby="submit-title">
+            <div class="form-inner">
+                <div class="section-header">
+                    <span class="section-tag">Φόρμες</span>
+                    <h2 class="section-title dark" id="submit-title">Υποβολή<br>Φόρμας</h2>
+                    <div class="divider" aria-hidden="true"></div>
+                </div>
+                <div class="form-card">
+                    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--stone);margin-bottom:28px;line-height:1.8;">
+                        Κατεβάστε τη φόρμα που χρειάζεστε από τη σελίδα <button onclick="showPage('services')" style="background:none;border:none;color:var(--gold);font-family:inherit;font-size:inherit;cursor:pointer;text-decoration:underline;padding:0;">Υπηρεσιών</button>, συμπληρώστε την και αποστείλατέ την μαζί με τα στοιχεία σας.
+                    </p>
+                    <form onsubmit="handleSubmit(event)" novalidate>
+                        <div class="form-field">
+                            <label for="emailInput">Email επικοινωνίας *</label>
+                            <input type="email" id="emailInput" name="email" placeholder="email@example.com" required autocomplete="email">
+                        </div>
+                        <div class="form-field">
+                            <label for="fileInput">Συνημμένη φόρμα (PDF / DOCX) *</label>
+                            <input type="file" id="fileInput" name="formFile" accept=".pdf,.doc,.docx,.dotx" required style="padding:12px 15px;">
+                        </div>
+                        <button type="submit" class="btn-gold" aria-label="Αποστολή φόρμας">Αποστολή Φόρμας &#8594;</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- ══ MAP MODAL ══ -->
+<div id="mapModal" class="map-modal" role="dialog" aria-modal="true" aria-labelledby="mapModalTitle">
+    <div class="map-modal-inner">
+        <div class="map-modal-header">
+            <h3 id="mapModalTitle"></h3>
+            <button class="map-close" onclick="closeMap()" aria-label="Κλείσιμο χάρτη">×</button>
+        </div>
+        <iframe id="mapFrame" src="" allowfullscreen loading="lazy" title="Χάρτης τοποθεσίας"></iframe>
+    </div>
+</div>
+
+<!-- ══ GDPR COOKIE BANNER ══ -->
+<div class="cookie-banner" id="cookieBanner" role="alert" aria-live="polite">
+    <p class="cookie-text">
+        Αυτός ο ιστότοπος χρησιμοποιεί cookies για τη βελτίωση της εμπειρίας σας. Συνεχίζοντας την περιήγηση, αποδέχεστε τη χρήση τους σύμφωνα με τη <a onclick="alert('Πολιτική απορρήτου – Επικοινωνήστε με τον Δήμο Φυλής για περισσότερες πληροφορίες.')" role="button" tabindex="0">Πολιτική Απορρήτου</a> μας.
+    </p>
+    <button class="cookie-btn" onclick="acceptCookies()" aria-label="Αποδοχή cookies">Αποδοχή</button>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer role="contentinfo">
+    <div class="footer-left">
+        <img src="LOGO_FYLI.png" alt="Λογότυπο Δήμου Φυλής" class="footer-logo">
+        <span class="footer-brand">Κοιμητήρια Δήμου Φυλής</span>
+    </div>
+    <div class="footer-center">
+        &copy; 2024 Κοιμητήρια Δήμου Φυλής<br>Όλα τα δικαιώματα διατηρούνται
+    </div>
+    <div class="footer-right">
+        Τηλ: 21032042713<br>2132042821
+    </div>
+</footer>
+
+<script>
+    /* ── MAP DATA ── */
+    const maps = {
+        map1: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.234339181857!2d23.66218715174343!3d38.06492331941219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a474651b9831%3A0x8a5eb1785ab35591!2sNekrotafio%20Ano%20Liosion!5e0!3m2!1sen!2sgr!4v1725888928552',
+        map2: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5282.014432325998!2d23.69312629122798!3d38.07726071682171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a3dc2a400001%3A0x4e0df7ad535ca441!2sNekrotafio%20Ano%20Liosion%20(Old)!5e0!3m2!1sen!2sgr!4v1725889133979',
+        map3: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1047.7521959885405!2d23.670362286392095!3d38.10043638861953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a14c9b48a895%3A0xb68e989c3fb05e12!2sFyli%20133%2045!5e0!3m2!1sen!2sgr!4v1725889329138'
+    };
+
+    /* ── PAGE NAVIGATION ── */
+    function showPage(name) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page-' + name);
+        if (target) target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeMobileMenu();
+    }
+
+    /* ── HAMBURGER MENU ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    function mobileNav(page) {
+        closeMobileMenu();
+        setTimeout(() => showPage(page), 150);
+    }
+
+    /* ── MAP MODAL ── */
+    function openMap(id, title) {
+        document.getElementById('mapModalTitle').textContent = title;
+        document.getElementById('mapFrame').src = maps[id];
+        document.getElementById('mapModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMap() {
+        document.getElementById('mapModal').classList.remove('open');
+        document.getElementById('mapFrame').src = '';
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('mapModal').addEventListener('click', function(e) {
+        if (e.target === this) closeMap();
+    });
+
+    /* ── FORM SUBMIT ── */
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert('Η φόρμα σας υποβλήθηκε με επιτυχία!\nΘα επικοινωνήσουμε μαζί σας σύντομα.');
+    }
+
+    /* ── NAV SHADOW ON SCROLL ── */
+    window.addEventListener('scroll', () => {
+        document.getElementById('mainNav').style.boxShadow =
+            window.scrollY > 10 ? '0 4px 28px rgba(0,0,0,0.45)' : 'none';
+    }, { passive: true });
+
+    /* ── KEYBOARD NAV FOR CARDS ── */
+    document.querySelectorAll('.location-card-link').forEach(card => {
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+        });
+    });
+
+    /* ── GDPR COOKIE BANNER ── */
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', '1');
+        document.getElementById('cookieBanner').style.transform = 'translateY(100%)';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                document.getElementById('cookieBanner').classList.add('show');
+            }, 1200);
+        }
+    });
+</script>
+</body>
+</html>
